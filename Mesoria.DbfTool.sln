@@ -1,8 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{459AC351-E35B-4925-9B8D-A974D800793B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mesoria.DbfTool.Cli", "Mesoria.DbfTool.Cli\Mesoria.DbfTool.Cli.csproj", "{AFF8BE47-E685-4275-9A06-2F3A797CA74E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B174CF0C-F239-49F1-8380-1F578FB30E3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AFF8BE47-E685-4275-9A06-2F3A797CA74E} = {459AC351-E35B-4925-9B8D-A974D800793B}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFF8BE47-E685-4275-9A06-2F3A797CA74E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF8BE47-E685-4275-9A06-2F3A797CA74E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF8BE47-E685-4275-9A06-2F3A797CA74E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF8BE47-E685-4275-9A06-2F3A797CA74E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
