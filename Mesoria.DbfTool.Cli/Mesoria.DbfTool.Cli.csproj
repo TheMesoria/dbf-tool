@@ -5,4 +5,8 @@
         <TargetFramework>netcoreapp5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Mesoria.DbfTool\Mesoria.DbfTool.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mesoria.DbfTool.Cli", "Meso
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B174CF0C-F239-49F1-8380-1F578FB30E3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mesoria.DbfTool", "Mesoria.DbfTool\Mesoria.DbfTool.csproj", "{0F38684B-1649-40E9-8780-FEDA097DC01F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,16 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AFF8BE47-E685-4275-9A06-2F3A797CA74E} = {459AC351-E35B-4925-9B8D-A974D800793B}
+		{0F38684B-1649-40E9-8780-FEDA097DC01F} = {459AC351-E35B-4925-9B8D-A974D800793B}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AFF8BE47-E685-4275-9A06-2F3A797CA74E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AFF8BE47-E685-4275-9A06-2F3A797CA74E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFF8BE47-E685-4275-9A06-2F3A797CA74E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFF8BE47-E685-4275-9A06-2F3A797CA74E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F38684B-1649-40E9-8780-FEDA097DC01F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F38684B-1649-40E9-8780-FEDA097DC01F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F38684B-1649-40E9-8780-FEDA097DC01F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F38684B-1649-40E9-8780-FEDA097DC01F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
