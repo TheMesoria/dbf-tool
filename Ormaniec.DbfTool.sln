@@ -2,11 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{459AC351-E35B-4925-9B8D-A974D800793B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mesoria.DbfTool.Cli", "Mesoria.DbfTool.Cli\Mesoria.DbfTool.Cli.csproj", "{AFF8BE47-E685-4275-9A06-2F3A797CA74E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ormaniec.DbfTool.Cli", "Ormaniec.DbfTool.Cli\Ormaniec.DbfTool.Cli.csproj", "{AFF8BE47-E685-4275-9A06-2F3A797CA74E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B174CF0C-F239-49F1-8380-1F578FB30E3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mesoria.DbfTool", "Mesoria.DbfTool\Mesoria.DbfTool.csproj", "{0F38684B-1649-40E9-8780-FEDA097DC01F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ormaniec.DbfTool", "Ormaniec.DbfTool\Ormaniec.DbfTool.csproj", "{0F38684B-1649-40E9-8780-FEDA097DC01F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

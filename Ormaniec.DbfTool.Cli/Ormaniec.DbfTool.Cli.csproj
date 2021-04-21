@@ -3,10 +3,11 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp5.0</TargetFramework>
+        <RootNamespace>Mesoria.DbfTool.Cli</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Mesoria.DbfTool\Mesoria.DbfTool.csproj" />
+      <ProjectReference Include="..\Ormaniec.DbfTool\Ormaniec.DbfTool.csproj" />
     </ItemGroup>
 
 </Project>

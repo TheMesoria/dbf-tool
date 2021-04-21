@@ -1,10 +1,6 @@
 
+# IDE folders
+
 .idea/
-
-Mesoria.DbfTool.Cli/bin/
-
-Mesoria.DbfTool.Cli/obj/
-
-Mesoria.DbfTool/bin/
-
-Mesoria.DbfTool/obj/
+bin/
+obj/
