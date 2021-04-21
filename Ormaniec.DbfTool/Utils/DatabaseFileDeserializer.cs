@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using Mesoria.DbfTool.Model;
 
 namespace Mesoria.DbfTool.Utils
@@ -11,7 +12,7 @@ namespace Mesoria.DbfTool.Utils
             DatabaseFile databaseFile = new DatabaseFile();
             databaseFile.Header = LoadHeader(stream);
             databaseFile.Table = LoadTable(stream);
-            
+
             return databaseFile;
         }
 
@@ -61,58 +62,82 @@ namespace Mesoria.DbfTool.Utils
          */
         private static Header LoadHeader(FileStream stream)
         {
-            var buffer = new Byte[10];
             Header header = new Header();
-            
+
             // Version number           | 8 bits | 1 byte  |
             header.Version = Convert.ToByte(stream.ReadByte());
-            
+
             // Date of last update      | 24 bits | 3 bytes |
             var year = stream.ReadByte();
             var month = stream.ReadByte();
             var day = stream.ReadByte();
             header.Date = new DateTime(year + 2000, month, day);
-            
-            // Number of records        | 32 bits | 4 bytes |
-            stream.Read(buffer,0,4);
-            header.RecordCount = BitConverter.ToUInt32(buffer);
-            
-            // Header length            | 16 bits | 2 bytes |
-            stream.Read(buffer,0,2);
-            header.HeaderLength = BitConverter.ToUInt16(buffer);
-            
-            // Record length            | 16 bits | 2 bytes |
-            stream.Read(buffer,0,2);
-            header.RecordLength = BitConverter.ToUInt16(buffer);
-            
-            // Reserved                 | 16 bits | 2 bytes |
-            stream.Read(buffer,0,2);
-            
+
+            {
+                // Number of records        | 32 bits | 4 bytes |
+                var buffer = new Byte[4];
+                stream.Read(buffer, 0, 4);
+                header.RecordCount = BitConverter.ToUInt32(FixEndianness(buffer));
+            }
+
+            {
+                // Header length            | 16 bits | 2 bytes |
+                var buffer = new Byte[2];
+                stream.Read(buffer, 0, 2);
+                header.HeaderLength = BitConverter.ToUInt16(buffer);
+            }
+
+            {
+                // Record length            | 16 bits | 2 bytes |
+                var buffer = new Byte[2];
+                stream.Read(buffer, 0, 2);
+                header.RecordLength = BitConverter.ToUInt16(FixEndianness(buffer));
+            }
+
+            {
+                // Reserved                 | 16 bits | 2 bytes |
+                var buffer = new Byte[2];
+                stream.Read(buffer, 0, 2);
+                header.ReservedRecord = BitConverter.ToUInt16(FixEndianness(buffer));
+            }
+
             // Incomplete transaction   |  8 bits | 1 byte  |
             var isStarted = Convert.ToBoolean(stream.ReadByte());
             header.IsTransactionStarted = isStarted;
-            
+
             // Encryption flag          |  8 bits | 1 byte  |
             var isEncrypted = Convert.ToBoolean(stream.ReadByte());
             header.IsTransactionEncrypted = isEncrypted;
-            
-            // Free record thread       | 32 bits | 4 bytes |
-            stream.Read(buffer,0,4);
-            
-            // Reserved for multi-user  | 64 bits | 8 bytes |
-            stream.Read(buffer,0,8);
-            
+
+            {
+                // Free record thread       | 32 bits | 4 bytes |
+                var buffer = new Byte[4];
+                stream.Read(buffer, 0, 4);
+                header.FreeRecordThread = BitConverter.ToUInt32(FixEndianness(buffer));
+            }
+
+            {
+                // Reserved for multi-user  | 64 bits | 8 bytes |
+                var buffer = new Byte[8];
+                stream.Read(buffer, 0, 8);
+                header.MultiUserThread = BitConverter.ToUInt64(FixEndianness(buffer));
+            }
+
             // MDX flag                 |  8 bits | 1 byte  |
             var isMdxAvailable = Convert.ToBoolean(stream.ReadByte());
             header.IsMdxAvailable = isMdxAvailable;
-            
+
             // Language driver          |  8 bits | 1 byte  |
             var languageDriver = Convert.ToByte(stream.ReadByte());
             header.LanguageDriver = languageDriver;
-            
-            // Reserved                 | 16 bits | 2 bytes |
-            stream.Read(buffer,0,2);
-            
+
+            {
+                // Reserved                 | 16 bits | 2 bytes |
+                var buffer = new Byte[2];
+                stream.Read(buffer, 0, 2);
+                header.ReservedRecordEnd = BitConverter.ToUInt16(FixEndianness(buffer));
+            }
+
             return header;
         }
 
@@ -124,6 +149,13 @@ namespace Mesoria.DbfTool.Utils
         private static Record LoadTableRecord(FileStream stream)
         {
             return null;
+        }
+
+        private static Byte[] FixEndianness(Byte[] buffer)
+        {
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(buffer);
+            return buffer;
         }
     }
 }
