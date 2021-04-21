@@ -84,7 +84,7 @@ namespace Mesoria.DbfTool.Utils
                 // Header length            | 16 bits | 2 bytes |
                 var buffer = new Byte[2];
                 stream.Read(buffer, 0, 2);
-                header.HeaderLength = BitConverter.ToUInt16(buffer);
+                header.HeaderLength = BitConverter.ToUInt16(FixEndianness(buffer));
             }
 
             {
@@ -98,7 +98,7 @@ namespace Mesoria.DbfTool.Utils
                 // Reserved                 | 16 bits | 2 bytes |
                 var buffer = new Byte[2];
                 stream.Read(buffer, 0, 2);
-                header.ReservedRecord = BitConverter.ToUInt16(FixEndianness(buffer));
+                header.ReservedRecord[0] = BitConverter.ToUInt16(FixEndianness(buffer));
             }
 
             // Incomplete transaction   |  8 bits | 1 byte  |
@@ -135,7 +135,7 @@ namespace Mesoria.DbfTool.Utils
                 // Reserved                 | 16 bits | 2 bytes |
                 var buffer = new Byte[2];
                 stream.Read(buffer, 0, 2);
-                header.ReservedRecordEnd = BitConverter.ToUInt16(FixEndianness(buffer));
+                header.ReservedRecord[1] = BitConverter.ToUInt16(FixEndianness(buffer));
             }
 
             return header;
@@ -146,14 +146,14 @@ namespace Mesoria.DbfTool.Utils
             return null;
         }
 
-        private static Record LoadTableRecord(FileStream stream)
-        {
-            return null;
-        }
+        // private static Record LoadTableRecord(FileStream stream)
+        // {
+        //     return null;
+        // }
 
         private static Byte[] FixEndianness(Byte[] buffer)
         {
-            if (BitConverter.IsLittleEndian)
+            if (!BitConverter.IsLittleEndian)
                 Array.Reverse(buffer);
             return buffer;
         }
